@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Hydro Dashboard + Optimizer</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo-box">
+      <img src="./images/logo.png" alt="logo">
+      <h1>HydroEco Grow</h1>
+    </div>
+  </header>
+
+  <!-- INTRO -->
+  <section class="intro">
+    <div class="intro-text">
+      <h1>Hydroponics</h1><br>
+      <p>Hydroponics is a modern, soil-less method of growing plants using nutrient-rich water solutions.
+         Instead of relying on traditional soil-based farming, hydroponics provides plants with all essential 
+         minerals directly through water, allowing roots to absorb nutrients more efficiently.<br>
+        This innovative farming technique has gained popularity because it enables faster plant growth, 
+        higher yields, and better resource management. Hydroponics uses up to 90% less water, requires less space,
+        and allows cultivation in places where soil quality is poor—such as urban rooftops, indoor farms, or arid regions.<br>
+        With precise control over pH, temperature, nutrient concentration, and light, hydroponic systems reduce the risk of pests 
+        and diseases, minimize environmental impact, and ensure year-round production. As global food demand rises and agricultural land shrinks,
+        hydroponics is emerging as a sustainable and scalable solution for future farming.</p>
+    </div>
+    <div class="intro-img">
+      <img src="images/hydro2.jpg" alt="Hydroponics">
+    </div>
+  </section>
+<hr>
+  <!-- DASHBOARD -->
+  <div class="container">
+    <h1 class="section-title">Hydroponics Parameters</h1>
+
+    <div class="cards">
+      <div class="card"><h3>pH</h3><div class="value" id="ph">--</div></div>
+      <div class="card"><h3>Temp (°C)</h3><div class="value" id="temperature">--</div></div>
+      <div class="card"><h3>Humidity (%)</h3><div class="value" id="humidity">--</div></div>
+    </div>
+    <br><br>
+  </div>
+<hr>
+    <!-- METHODS -->
+    <section class="methods-section">
+      <div>
+        <h1>Methods To Grow:</h1>
+        <br>
+<div class="m1">
+    <p>
+        <h2>1. Kratky Method (No Electricity - Easiest Method)</h2><br>
+        The Kratky method is the simplest hydroponic technique.It needs no pump, no electricity, no moving parts.<br>
+        <b>How it works:</b><br>
+        Plants grow in cups placed over a container filled with nutrient solution.
+        Roots partly stay in water and partly in air.
+        As water level drops, roots get oxygen naturally.<br>
+        <b>Best for:</b><br>
+        Lettuce, spinach, herbs (basil, mint, coriander), microgreens.<br>
+        <b>Materials:</b>
+        <ul>
+         <li>Plastic container/jar</li>
+         <li>Net cup</li>
+         <li>Nutrient solution</li>
+         <li>Cocopeat or clay pebbles</li>
+      </ul>
+    </p>
+</div>
+<br>
+<div class="m2">
+    <p>
+        <h2>Deep Water Culture (DWC)</h2><br>
+        The plant roots float in a nutrient-rich water tank.<br>
+        <b>How it works:</b><br>
+        An air pump provides oxygen to roots.
+        Roots stay submerged in nutrient solution at all times.<br>
+        <b>Best for:</b><br>
+        Lettuce, kale, herbs, strawberries.<br>
+        <b>Materials:</b>
+        <ul>
+         <li>Bucket/container</li>
+         <li>Air pump + air stone</li>
+         <li>Net pots</li>
+         <li>Hydroponic nutrients</li>
+      </ul>
+    </p>
+</div>
+<br>
+<div class="m3">
+    <p>
+        <h2>3. Nutrient Film Technique (NFT)</h2><br>
+        A thin film of nutrient water continuously flows over the roots.<br>
+        <b>How it works:</b><br>
+        Plants grow in channels/pipes.
+        A water pump circulates nutrient solution.
+        Roots get both nutrients and oxygen.<br>
+        <b>Best for:</b><br>
+        Leafy greens, herbs.<br>
+        <b>Materials:</b>
+        <ul>
+         <li>PVC pipes</li>
+         <li>Water pump</li>
+         <li>Reservoir tank</li>
+         <li>Net cups</li>
+      </ul>
+    </p>
+</div>
+<br>
+<div class="m4">
+    <p>
+        <h2>4.Wick System (No Electricity)</h2><br>One of the easiest systems for beginners.<br>
+        <b>How it works:</b><br>Plant sits in growing medium.
+          A wick pulls nutrient solution from reservoir to roots.<br>
+        <b>Best for:</b><br>
+        Small herbs, leafy greens.<br>
+        <b>Materials:</b>
+        <ul>
+         <li>Container</li>
+         <li>Wick (cotton rope)</li>
+         <li>Nutrient tank</li>
+         <li>Cocopeat/perlites</li>
+      </ul>
+    </p>
+</div>
+<br><br>
+   </div>
+    </section>
+<hr>
+    <!-- OPTIMIZER -->
+    <div class="optimizer">
+      <h2 >Nutrient Optimizer</h2>
+<br>
+      <label><b>Select crops (hold Ctrl/Cmd for multiple):</b></label>
+      <select id="cropSelect" multiple size="4"></select><br>
+
+      <button id="runBtn">Run Optimization</button><br>
+
+      <div id="optResult"></div>
+
+      <div id="plotWrap">
+        <h3>Optimized Nutrient Balance</h3>
+        <img id="optPlot" src="" alt="plot">
+      </div>
+    </div>
+  </div>
+<hr>
+<br>
+  <!-- KNOW YOUR CROPS -->
+  <section class="crop-section">
+  <h2>Know Your Crop:</h2>
+  <br>
+    <div class="crop" onclick="toggleInfo('info1')">Tomato</div>
+    <div id="info1" class="content">
+      <img src="images/tomato.jpg" alt="tomato" width="200px" height="100px"> <br>tomatoes grow in nutrient-rich water instead of soil, allowing faster and cleaner growth.
+They receive precise nutrients, resulting in consistent size, flavor, and higher yield.
+These tomatoes can be grown year-round indoors, making them ideal for urban and controlled environments.</div>
+
+    <div class="crop" onclick="toggleInfo('info2')">Lettuce</div>
+    <div id="info2" class="content"><img src="images/lettuce.jpg" alt="lettuce" width="200px" height="100px"><br> Hydroponic lettuce grows quickly in water-based systems, using less space and water than traditional farming.
+It stays crisp and fresh because the nutrients and environment are carefully controlled.</div>
+
+    <div class="crop" onclick="toggleInfo('info3')">Cucumber</div>
+    <div id="info3" class="content"><img src="images/cucu.jpg" alt="cucumbers" width="200px" height="100px"><br> Hydroponic cucumbers grow rapidly in nutrient-rich water, producing clean and uniform fruits.
+Controlled conditions help reduce pests and diseases, resulting in healthier plants.
+They yield more in less space, making them ideal for vertical and greenhouse farming.</div>
+
+    <div class="crop" onclick="toggleInfo('info4')">Basil</div>
+    <div id="info4" class="content"><img src="images/basil.jpg" alt="basil" width="200px" height="100px"><br> Hydroponic basil grows fast and aromatic because it receives precise nutrients and constant moisture.
+It stays fresh, vibrant, and pest-free due to controlled indoor conditions.</div>
+
+    <div class="crop" onclick="toggleInfo('info5')">Strawberry</div>
+    <div id="info5" class="content"><img src="images/straw.jpg" alt="strawberries" width="200px" height="100px"> <br>Hydroponic strawberries grow in nutrient-rich water, producing clean and juicy berries without soil.
+Controlled temperature and light help the plants yield sweeter and more consistent fruit.</div>
+
+    <div class="crop" onclick="toggleInfo('info6')">Microgreens</div>
+    <div id="info6" class="content"><img src="images/mg.jpg" alt="microgreens" width="200px" height="100px"> <br>They are highly nutritious, offering concentrated vitamins, minerals, and flavor.
+These tiny greens require very little space, making them ideal for indoor and small-scale farming.</div>
+
+    <div class="crop" onclick="toggleInfo('info7')">Mint</div>
+    <div id="info7" class="content"><img src="images/mint.jpg" alt="mint" width="200px" height="100px"> <br>Hydroponic mint grows vigorously with constant moisture and balanced nutrients, producing lush, aromatic leaves.
+It stays clean and pest-free because it's grown in a controlled, soil-less environment.
+This herb can be harvested repeatedly, giving continuous fresh mint year-round.</div>
+
+  </section>
+  <br>
+<hr>
+<br>
+  <!-- PLANT COMBINATIONS -->
+    <h1 class="bh1">Best Combinations to Try for Better Yields:</h1>
+    <br>
+  <section class="combo-section">
+    <div class="combo-card">
+      <h2>Combination Name:Tomato Boost Mix</h2>
+      <h3>Crops: Tomato, Capsicum, Chili</h3>
+      <h3>Hypthetical Yields:6 - 9 kg per plant per cycle</h3>
+      <ul type="none">
+        <li>nutrient solution:</li>
+        <li>N:200 ppm</li>
+        <li>P:60 ppm</li>
+        <li>K:300 ppm</li>
+        <li>PH: 5.8 - 6.2</li>
+      </ul>
+    </div>
+    <br>
+    
+    <div class="combo-card">
+      <h2>Combination Name:Lettuce Crisp Blend</h2>
+      <h3>Crops:Lettuce, Spinach, Kale, Swiss Chard</h3>
+      <h3>Hypthetical Yields: 150 - 220 g per head </h3>
+      <ul type="none">
+        <li>nutrient solution:</li>
+        <li>N:150 ppm</li>
+        <li>P: 40 ppm</li>
+        <li>K:200 ppm</li>
+        <li>PH:5.6 - 6.0</li>
+      </ul>
+    </div>
+    <br>
+    <div class="combo-card">
+      <h2>Combination Name:Cucumber High-Yield Mix</h2>
+      <h3>Crops:Cucumber, Zucchini, Beans, Peas</h3>
+      <h3>Hypthetical Yields:10 - 15 kg per plant per cycle</h3>
+      <ul type="none">
+        <li>nutrient solution:</li>
+        <li>N:180 ppm</li>
+        <li>P:50 ppm</li>
+        <li>K:250 ppm</li>
+        <li>PH:5.8 - 6.5</li>
+        </ul>
+    </div>
+
+<br>
+    <div class="combo-card">
+      <h2>Combination Name:Strawberry Sweet Blend</h2>
+      <h3>Crops:Strawberry, Blueberry , Raspberry</h3>
+      <h3>Hypthetical Yields:400 - 700 g per plant per cycle</h3>
+      <ul type="none">
+        <li>nutrient solution:</li>
+        <li>N:140 ppm</li>
+        <li>P:50 ppm</li>
+        <li>K:250 ppm</li>
+        <li>PH:5.5 - 6.2</li>
+        </ul>
+    </div>
+    <br>
+    <div class="combo-card">
+      <h2>Combination Name:Basil Aroma Mix</h2>
+      <h3>Crops:Basil, Oregano, Thyme, Sage</h3>
+      <h3>Hypthetical Yields:30 - 50 g per plant per harvest </h3>
+      <ul type="none">
+        <li>nutrient solution:</li>
+        <li>N:160 ppm</li>
+        <li>P:30 ppm</li>
+        <li>K:200 ppm</li>
+        <li>PH:5.8 - 6.5</li>
+        </ul>
+    </div>
+    <br>
+    <div class="combo-card">
+      <h2>Combination Name:Mint Fresh Boost</h2>
+      <h3>Crops:Mint, Coriander, Dill, Lemongrass</h3>
+      <h3>Hypthetical Yields:40 - 70 g per plant per harvest</h3>
+      <ul type="none">
+        <li>nutrient solution:</li>
+        <li>N:180 ppm</li>
+        <li>P:35 ppm</li>
+        <li>K:220 ppm</li>
+        <li>PH: 6.0 - 6.5</li>
+       </ul>
+    </div>
+    <br>
+    <div class="combo-card">
+      <h2>Combination Name:Microgreens Rapid Grow</h2>
+      <h3>Crops: Microgreens (Mustard, Sunflower, Radish, Broccoli)</h3>
+      <h3>Hypthetical Yields:1.0 - 1.5 kg per tray</h3>
+      <ul type="none">
+        <li>nutrient solution:</li>
+        <li>N:100 ppm</li>
+        <li>P:30 ppm</li>
+        <li>K:120 ppm</li>
+        <li>PH:5.5 - 6.0</li>
+      </ul>
+    </div>
+    <br>
+  </section>
+  <hr>
+
+  <!-- MISTAKES -->
+  <section class="mistakes-section">
+    <h2>Mistakes to Avoid</h2>
+    <div class="mis">
+      <p><b>Not checking pH regularly</b><br>
+        pH decides how well plants absorb nutrients. If pH goes out of range (5.5-6.5), plants show yellow leaves,<br>
+         slow growth, and nutrient lockout. Check daily and adjust using pH Up/Down.
+      </p>
+    </div>
+    <div class="mis">
+      <p><b>poor oxygen supply to roots</b><br>
+Roots need oxygen for nutrient uptake. Without air stones or proper water movement, roots suffocate, rot, <br>
+and turn brown. Use strong air pumps to keep water oxygen-rich.
+      </p>
+    </div>
+    <div class="mis">
+      <p><b>Water temperature too high</b><br>
+Hot water (above 25°C) reduces dissolved oxygen and encourages root rot.<br>
+ Keep nutrient solution 18 - 22°C by shading the tank or cooling it if needed
+      </p>
+    </div>
+    <div class="mis">
+      <p><b>Ignoring water level changes</b><br>
+When water gets low, roots dry out at the top and burn due to concentrated nutrients. <br>
+Check water every 2 - 3 days and top-up with plain water (not nutrients).
+      </p>
+    </div>
+  </section>
+
+  <!-- JS -->
+  <script>
+    function toggleInfo(id) {
+      const content = document.getElementById(id);
+      content.style.display = content.style.display === "block" ? "none" : "block";
+    }
+
+    async function fetchSensor() {
+      try {
+        const r = await fetch('/data', { cache:'no-store' });
+        const d = await r.json();
+        document.getElementById('ph').innerText = d.ph;
+        document.getElementById('temperature').innerText = d.temperature;
+        document.getElementById('humidity').innerText = d.humidity;
+      } catch(e) { console.error(e); }
+    }
+    fetchSensor();
+    setInterval(fetchSensor, 1000);
+
+    const CROPS = ["Tomato","Lettuce","Spinach","Cucumber","Strawberry","Basil","Beans","Carrot","Peas","Cabbage","Okra","Mint","Microgreens"];
+    const cropSelect = document.getElementById('cropSelect');
+
+    CROPS.forEach(c => {
+      const opt = document.createElement('option');
+      opt.value = c;
+      opt.innerText = c;
+      cropSelect.appendChild(opt);
+    });
+
+    document.getElementById('runBtn').addEventListener('click', async () => {
+      const sel = [...cropSelect.options].filter(o => o.selected).map(o => o.value);
+      if (sel.length === 0) { alert('Select at least one crop'); return; }
+
+      document.getElementById('runBtn').innerText = 'Running...';
+      document.getElementById('optResult').innerText = '';
+
+      try {
+        const res = await fetch('/optimize', {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({ crops: sel })
+        });
+
+        const data = await res.json();
+        document.getElementById('runBtn').innerText = 'Run Optimization';
+
+        if (data.error) {
+          document.getElementById('optResult').innerText = 'Error: ' + data.error;
+          return;
+        }
+
+        let html = '<b>Optimized (pH, EC, N, P, K):</b><br>';
+        html += `${data.best.pH}, ${data.best.EC}, ${data.best.N}, ${data.best.P}, ${data.best.K}<br><br>`;
+        html += '<b>Deviations by crop:</b><br>';
+
+        for (let c of Object.keys(data.deviations)) {
+          const d = data.deviations[c];
+          html += `<b>${c}</b>: pH ${d.pH}, EC ${d.EC}, N ${d.N}, P ${d.P}, K ${d.K}<br>`;
+        }
+
+        document.getElementById('optResult').innerHTML = html;
+
+        if (data.plot) {
+          document.getElementById('optPlot').src = data.plot + '?t=' + Date.now();
+          document.getElementById('plotWrap').style.display = 'block';
+        }
+
+      } catch (err) {
+        document.getElementById('runBtn').innerText = 'Run Optimization';
+        document.getElementById('optResult').innerText = 'Error running optimizer: ' + err;
+      }
+    });
+  </script>
+
+</body>
+</html>
