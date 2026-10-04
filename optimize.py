@@ -166,8 +166,11 @@ def plot_nutrient_balance(N, P, K, EC, outpath):
     fig.savefig(outpath, dpi=150)
     plt.close(fig)
 
-outplot = "public/optimize_plot.png"
+import os
+outplot = "optimize_plot.png"
 plot_nutrient_balance(best[2], best[3], best[4], best[1], outplot)
+if os.path.exists("public"):
+    plot_nutrient_balance(best[2], best[3], best[4], best[1], os.path.join("public", "optimize_plot.png"))
 
 result = {
     "best": {

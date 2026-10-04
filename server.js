@@ -13,7 +13,8 @@ const PORT = 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// serve public
+// serve static files (root and public if present)
+app.use(express.static(__dirname));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // ---------- Serial port (same as before) ----------
@@ -92,9 +93,10 @@ app.post('/optimize', (req, res) => {
         try {
           const parsed = JSON.parse(stdout);
           // If plot path exists, include accessible URL
-          const plotPath = path.join(__dirname, 'public', 'optimize_plot.png');
-          if (fs.existsSync(plotPath)) {
-            parsed.plot = '/optimize_plot.png';
+          const rootPlotPath = path.join(__dirname, 'optimize_plot.png');
+          const pubPlotPath = path.join(__dirname, 'public', 'optimize_plot.png');
+          if (fs.existsSync(rootPlotPath) || fs.existsSync(pubPlotPath)) {
+            parsed.plot = 'optimize_plot.png';
           }
           return res.json(parsed);
         } catch (err) {
